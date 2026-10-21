@@ -2,3 +2,5 @@ simpy>=4.1
 numpy
 pandas
 matplotlib
+plotly
+streamlit>=1.50

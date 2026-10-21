@@ -16,6 +16,20 @@ predictive maintenance, or an extra machine at the bottleneck?
 This simulation is a small **digital-twin-style what-if model**: change a
 parameter, re-run, and compare KPIs before touching the real line.
 
+## 🕹️ Interactive Simulator
+
+An interactive Streamlit app lets you change every parameter (machines, cycle
+times, MTBF/MTTR, buffers, scrap) or start from a preset scenario, and compares
+your line with the baseline. It shows throughput, WIP, flow time, machine states
+and **detects the bottleneck automatically**.
+
+🔗 **Live demo:** <add-your-streamlit-link-here>
+
+    streamlit run app.py
+
+> Try it: start from *Baseline*, select the *+1 CNC machine* preset and watch the
+> bottleneck move from Machining to Assembly.
+
 ## ⚙️ Model
 
 | Element | How it is modeled |
@@ -74,6 +88,7 @@ unplanned failures (MTBF × 2) and shortens repairs by 30% (MTTR × 0.7).*
     cd production-line-simulation-simpy
     pip install -r requirements.txt
 
+    streamlit run app.py          # interactive simulator
     python simulation.py          # one baseline run, prints KPIs
     python run_experiments.py     # all scenarios, saves tables and charts
 
@@ -81,8 +96,10 @@ Options: `python run_experiments.py --reps 50 --sim-time 19200`
 
 ## 📁 Project Structure
 
+    ├── app.py                 # Interactive Streamlit simulator
     ├── simulation.py          # SimPy model (stations, breakdowns, buffers, KPIs)
     ├── run_experiments.py     # Scenarios, replications, confidence intervals, charts
+    ├── .streamlit/config.toml # Theme
     ├── requirements.txt
     ├── results/               # CSV tables (scenario summary, station states)
     └── docs/                  # Generated charts
@@ -94,9 +111,8 @@ Options: `python run_experiments.py --reps 50 --sim-time 19200`
   [SUTM predictive maintenance dashboard](https://github.com/Muat01/sutm-predictive-maintenance-dashboard)
   to drive failure rates (digital twin)
 - Add rework loops, shifts, operators and changeover times
-- Streamlit interface to change parameters interactively
 
-## Author
+## 👤 Author
 
 **Muatasem Hadi** · MEng Candidate in Industrial Engineering, Telkom University ·
 [LinkedIn](https://www.linkedin.com/in/muatasem-hadi)

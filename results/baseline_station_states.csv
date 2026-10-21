@@ -1,0 +1,5 @@
+Station,busy_pct,blocked_pct,starved_pct,down_pct,failures
+Cutting,57.86,40.55,0.0,1.59,13.33
+Machining,86.39,1.0,0.35,12.26,84.5
+Assembly,73.47,0.0,23.55,2.97,20.5
+Inspection,61.59,0.0,38.41,0.0,0.0

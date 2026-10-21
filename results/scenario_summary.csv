@@ -1,0 +1,7 @@
+Scenario,Throughput (parts/h),Throughput ±95% CI,Avg WIP (parts),Avg flow time (min),Scrapped parts,Δ vs baseline (%)
+Baseline,16.27,0.11,9.79,34.18,155.9,0.0
+Bigger buffers,16.48,0.11,20.13,69.11,164.4,1.34
+CNC cycle -10%,17.99,0.16,10.41,32.83,177.67,10.61
+Predictive maintenance,17.84,0.07,9.85,31.29,173.77,9.7
++1 CNC machine,20.93,0.1,14.58,39.75,201.9,28.65
+PdM + 1 CNC,21.77,0.08,15.35,40.23,211.5,33.82

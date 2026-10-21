@@ -96,7 +96,7 @@ Options: `python run_experiments.py --reps 50 --sim-time 19200`
 - Add rework loops, shifts, operators and changeover times
 - Streamlit interface to change parameters interactively
 
-## 👤 Author
+## Author
 
 **Muatasem Hadi** · MEng Candidate in Industrial Engineering, Telkom University ·
 [LinkedIn](https://www.linkedin.com/in/muatasem-hadi)

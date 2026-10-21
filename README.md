@@ -23,7 +23,9 @@ times, MTBF/MTTR, buffers, scrap) or start from a preset scenario, and compares
 your line with the baseline. It shows throughput, WIP, flow time, machine states
 and **detects the bottleneck automatically**.
 
-🔗 **Live demo:** <add-your-streamlit-link-here>
+🔗 **Live demo:** [factory-line-simulator.streamlit.app](https://factory-line-simulator.streamlit.app)
+
+To run it locally:
 
     streamlit run app.py
 

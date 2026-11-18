@@ -80,6 +80,8 @@ class Station:
 
     def _processing_time(self) -> float:
         cv = self.cfg.cv
+        if cv <= 0.0:
+            return self.cfg.mean_time  # deterministic station, no variability
         shape = 1.0 / (cv * cv)
         return self.line.rng.gammavariate(shape, self.cfg.mean_time / shape)
 

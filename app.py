@@ -17,13 +17,13 @@ from simulation import StationConfig, default_line, run_simulation
 
 st.set_page_config(page_title="Production Line Simulator", page_icon="🏭", layout="wide")
 
-STATE_COLORS = {"Processing": "#00d4aa", "Blocked": "#ffa502", "Starved": "#3d8eff", "Down (failure)": "#ff4757"}
+STATE_COLORS = {"Processing": "#22C98A", "Blocked": "#E6B94A", "Starved": "#6FA8FF", "Down (failure)": "#F0616D"}
 STATE_KEYS = {"Processing": "busy_pct", "Blocked": "blocked_pct", "Starved": "starved_pct", "Down (failure)": "down_pct"}
 
 st.markdown("""
 <style>
 [data-testid="stMetricValue"] { font-size: 1.8rem; }
-.small-note { font-size: 12px; color: #8b92a8; }
+.small-note { font-size: 12px; color: #7E8C85; }
 </style>
 """, unsafe_allow_html=True)
 

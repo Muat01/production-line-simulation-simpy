@@ -127,12 +127,12 @@ def station_states(result: dict) -> pd.DataFrame:
 
 
 # ─── Charts ─────────────────────────────────────────────────────────────────
-PALETTE = {"busy": "#00a98a", "blocked": "#ffa502", "starved": "#3d8eff", "down": "#ff4757"}
+PALETTE = {"busy": "#16A673", "blocked": "#E6B94A", "starved": "#6FA8FF", "down": "#F0616D"}
 
 
 def plot_throughput(df: pd.DataFrame, path: str) -> None:
     fig, ax = plt.subplots(figsize=(9, 4.8))
-    colors = ["#8b92a8"] + ["#00a98a"] * (len(df) - 1)
+    colors = ["#7E8C85"] + ["#16A673"] * (len(df) - 1)
     bars = ax.bar(df["Scenario"], df["Throughput (parts/h)"],
                   yerr=df["Throughput ±95% CI"], capsize=4, color=colors)
     for bar, delta in zip(bars, df["Δ vs baseline (%)"]):
@@ -170,7 +170,7 @@ def plot_station_states(df: pd.DataFrame, title: str, path: str) -> None:
 
 def plot_wip_vs_throughput(df: pd.DataFrame, path: str) -> None:
     fig, ax = plt.subplots(figsize=(7.5, 4.8))
-    ax.scatter(df["Avg WIP (parts)"], df["Throughput (parts/h)"], s=90, color="#3d8eff")
+    ax.scatter(df["Avg WIP (parts)"], df["Throughput (parts/h)"], s=90, color="#6FA8FF")
     for _, r in df.iterrows():
         ax.annotate(r["Scenario"], (r["Avg WIP (parts)"], r["Throughput (parts/h)"]),
                     textcoords="offset points", xytext=(6, 6), fontsize=8)

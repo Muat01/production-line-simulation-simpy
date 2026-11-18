@@ -1,4 +1,8 @@
-# 🏭 Production Line Simulation with SimPy
+# Production Line Simulation with SimPy
+
+[![tests](https://github.com/Muat01/production-line-simulation-simpy/actions/workflows/tests.yml/badge.svg)](https://github.com/Muat01/production-line-simulation-simpy/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-22C98A.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org)
 
 **Discrete-event simulation of a serial manufacturing line to find bottlenecks and compare improvement scenarios, including predictive maintenance.**
 
@@ -6,7 +10,7 @@ Academic project · Telkom University · Industrial Engineering (MEng)
 
 ![Throughput by scenario](docs/throughput_by_scenario.png)
 
-## 🎯 Problem
+## Problem
 
 A four-station production line (Cutting → CNC Machining → Assembly → Inspection)
 suffers from random breakdowns, finite buffers and quality losses. Which
@@ -16,7 +20,7 @@ predictive maintenance, or an extra machine at the bottleneck?
 This simulation is a small **digital-twin-style what-if model**: change a
 parameter, re-run, and compare KPIs before touching the real line.
 
-## 🕹️ Interactive Simulator
+## Interactive simulator
 
 An interactive Streamlit app lets you change every parameter (machines, cycle
 times, MTBF/MTTR, buffers, scrap) or start from a preset scenario, and compares
@@ -32,7 +36,7 @@ To run it locally:
 > Try it: start from *Baseline*, select the *+1 CNC machine* preset and watch the
 > bottleneck move from Machining to Assembly.
 
-## ⚙️ Model
+## Model
 
 | Element | How it is modeled |
 |---------|-------------------|
@@ -55,7 +59,7 @@ To run it locally:
 > ⚠️ Parameters are **illustrative assumptions**, not measurements from a real factory.
 > Replace them in `simulation.py` (`default_line`) with your own data.
 
-## 📈 Results
+## Results
 
 30 replications per scenario (different random seeds), mean ± 95% confidence interval.
 
@@ -84,7 +88,7 @@ To run it locally:
 *Predictive maintenance scenario assumes condition monitoring avoids half of the
 unplanned failures (MTBF × 2) and shortens repairs by 30% (MTTR × 0.7).*
 
-## 🚀 Getting Started
+## Getting started
 
     git clone https://github.com/Muat01/production-line-simulation-simpy.git
     cd production-line-simulation-simpy
@@ -96,17 +100,38 @@ unplanned failures (MTBF × 2) and shortens repairs by 30% (MTTR × 0.7).*
 
 Options: `python run_experiments.py --reps 50 --sim-time 19200`
 
-## 📁 Project Structure
+## Project structure
 
-    ├── app.py                 # Interactive Streamlit simulator
-    ├── simulation.py          # SimPy model (stations, breakdowns, buffers, KPIs)
-    ├── run_experiments.py     # Scenarios, replications, confidence intervals, charts
-    ├── .streamlit/config.toml # Theme
+    ├── app.py                   # Interactive Streamlit simulator
+    ├── simulation.py            # SimPy model (stations, breakdowns, buffers, KPIs)
+    ├── run_experiments.py       # Scenarios, replications, confidence intervals, charts
+    ├── theme.py                 # MH Emerald & Gold tokens, shared across my projects
+    ├── tests/test_simulation.py # 17 unit tests
+    ├── .streamlit/config.toml   # Dark theme configuration
+    ├── .github/workflows/       # CI: pytest on every push
     ├── requirements.txt
-    ├── results/               # CSV tables (scenario summary, station states)
-    └── docs/                  # Generated charts
+    ├── results/                 # CSV tables (scenario summary, station states)
+    └── docs/                    # Generated charts
 
-## 🔭 Possible Extensions
+## Tests
+
+    pip install -r requirements.txt pytest
+    pytest -q      # 17 tests
+
+A stochastic model cannot be tested against fixed output, so the tests assert
+the properties the model must hold: the same seed reproduces a run and
+different seeds do not; every station's busy, blocked, starved and down time
+adds up to 100%; throughput never exceeds the bottleneck rate, and on a
+deterministic line it reaches it; **Little's law** (WIP = throughput × flow
+time) holds within 15%; a part never leaves a station it did not enter; a
+second machine on the bottleneck, larger buffers, scrap and breakdowns each
+move the KPIs in the documented direction.
+
+Writing them found a real bug: a station configured with `cv=0`, the
+documented way to ask for deterministic processing times, crashed the run with
+a division by zero. Fixed in `simulation.py`.
+
+## Possible extensions
 
 - Calibrate parameters with real production and downtime logs
 - Connect to sensor data / health index from the
@@ -114,7 +139,7 @@ Options: `python run_experiments.py --reps 50 --sim-time 19200`
   to drive failure rates (digital twin)
 - Add rework loops, shifts, operators and changeover times
 
-## 👤 Author
+## Author
 
 **Muatasem Hadi** · MEng Candidate in Industrial Engineering, Telkom University ·
 [LinkedIn](https://www.linkedin.com/in/muatasem-hadi)
